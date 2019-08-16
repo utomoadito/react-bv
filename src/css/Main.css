@@ -1,0 +1,57 @@
+.main {
+  margin-left: 20%;
+}
+.navbar-default {
+  border-color: unset;
+}
+.navbar {
+  border-radius: unset;
+}
+.sidebar {
+  background: #161665;
+  position: fixed;
+  width: 20%;
+  height: 100%;
+}
+.nav > li > a {
+  text-align: left;
+  color: #e5f3ff;
+}
+.nav > li > a > i {
+  margin-right: 20px;
+  font-size: 20px;
+}
+.nav > li > a:hover {
+  background-color: #7887bd;
+}
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+  background-color: unset;
+}
+.navbar-default .navbar-toggle {
+  border-color: unset;
+}
+.navbar-toggle {
+  border: unset;
+  float: left;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    position: unset;
+    width: unset;
+    height: auto;
+  }
+  .nav {
+    border-top: unset !important;
+  }
+  .navbar-default .navbar-collapse {
+    border: unset;
+  }
+  .main {
+    margin-left: unset;
+  }
+}
