@@ -16,7 +16,7 @@ With the following data
 ```
 {
   "email": "admin@mail.com",
-  "password":""
+  "password":"secret"
 }
 ```
 You should receive an access token with the following format 
