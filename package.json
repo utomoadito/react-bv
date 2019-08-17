@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "eslint-plugin-react-hooks": "^1.7.0",
+    "json-server": "^0.15.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
@@ -14,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mock:api": "json-server --watch src/api/db.json --port 4000"
+    "mock:api": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
