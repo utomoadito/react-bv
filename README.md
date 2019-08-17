@@ -10,6 +10,27 @@ Run mock API (http://localhost:4000):
 
 ### `npm run mock:api`
 
+You can login with this link to get data authorize mock API. Use rule of JSON Server<br>
+Link POST Request (http://localhost:4000/auth/login)<br>
+With the following data 
+```
+{
+  "email": "admin@mail.com",
+  "password":""
+}
+```
+You should receive an access token with the following format 
+```
+{
+   "access_token": "<ACCESS_TOKEN>"
+}
+```
+You should send this authorization with any request to the protected endpoints
+```
+Authorization: Bearer <ACCESS_TOKEN>
+```
+<br>
+
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
