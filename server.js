@@ -116,7 +116,9 @@ server.post('/auth/register', (req, res) => {
 server.post('/auth/login', (req, res) => {
   console.log('login endpoint called; request body:')
   console.log(req.body)
-  const { email, password } = req.body
+  // const { email, password } = req.body
+  const email = req.body.email
+  const password = req.body.password
   if (isAuthenticated({ email, password }) === false) {
     const status = 401
     const message = 'Incorrect email or password'
@@ -131,7 +133,7 @@ server.post('/auth/login', (req, res) => {
   console.log('Access Token:' + access_token)
   res.status(200).json({
     access_token,
-    data_user
+    data_user: data_user
   })
 })
 
@@ -140,7 +142,7 @@ server.post('/user/:id', (req, res) => {
   checkAuthorize(req, res)
 
   const userIndex = userdb.users.findIndex(user => user.id === parseInt(req.params.id))
-  const { email, password } = req.body
+  // const { email, name } = req.body
 
   fs.readFile('./src/api/db_user.json', (err, datas) => {
     if (err) {
@@ -154,7 +156,7 @@ server.post('/user/:id', (req, res) => {
     var data = JSON.parse(datas.toString())
 
     //Edit user
-    Object.assign(data.users[userIndex], { email: email, password: password })
+    Object.assign(data.users[userIndex], req.body)
     fs.writeFile('./src/api/db_user.json', JSON.stringify(data), (err, result) => {
       // WRITE
       if (err) {

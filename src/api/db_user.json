@@ -1,6 +1,1 @@
-{
-  "users": [
-    { "id": 1, "name": "Admin", "email": "admin@mail.com", "password": "secred" },
-    { "id": "2", "name": "Adhit", "email": "adhit@mail.com", "password": "blabla" }
-  ]
-}
+{"users":[{"id":1,"name":"Superadminss","email":"admin@mail.com","password":"secret"},{"id":"2","name":"Adhit","email":"adhit@mail.com","password":"blabla"}]}

@@ -2,6 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      // dataUser: {}
+    }
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +30,7 @@ class Sidebar extends React.Component {
                   <img src="/default-user.png" alt="" style={{width:'50px'}} />
                 </div>
                 <div style={{marginLeft:'60px'}}>
-                  <span style={{fontSize:'18px',color:'white'}}>Adhit</span><br />
+                  <span style={{fontSize:'18px',color:'white'}}> {this.props.dataUser.name} </span><br />
                   <span style={{color:'#9cb0c1'}}>Admin</span>
                 </div>
               </div>

@@ -3,10 +3,42 @@ import Sidebar from '../components/Sidebar'
 import '../css/Main.css'
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataUser: {}
+    }
+  }
+
+  componentDidMount() {
+    let dataUser = localStorage.getItem('data-user')
+    dataUser = JSON.parse(dataUser)
+    this.setState({
+      dataUser: dataUser
+    })
+  }
+
+  // Methods Event
+  inputModel(model, event) {
+    // check if "model" has ".", that's mean "model" had children inside
+    if (model.includes('.')) {
+      let childObject = model.split('.')
+      this.setState({
+        [childObject[0]]: Object.assign({}, this.state[childObject[0]], {
+          [childObject[1]]: event.target.value
+        })
+      })
+    } else {
+      this.setState({
+        [model]: event.target.value
+      })
+    }
+  }
+
   render() {
     return (
       <div>
-        <Sidebar />
+        <Sidebar dataUser={this.state.dataUser} />
         <div className="main">
           <div className="container-fluid" style={{paddingTop: '10px'}}>
             <div className="row">
@@ -26,15 +58,29 @@ class Dashboard extends React.Component {
                 <div className="row">
                   <form className="form-horizontal">
                     <div className="form-group">
-                      <label for="email" className="col-sm-2 control-label">Email</label>
+                      <label htmlFor="email" className="col-sm-2 control-label">Email</label>
                       <div className="col-md-8">
-                        <input type="email" className="form-control" id="email" placeholder="admin@mail.com" />
+                        <input
+                         type="email"
+                         className="form-control"
+                         id="email"
+                         placeholder="admin@mail.com"
+                         onChange={this.inputModel.bind(this, 'dataUser.email')}
+                         value={this.state.dataUser.email || ''}
+                        />
                       </div>
                     </div>
                     <div className="form-group">
-                      <label for="name" className="col-sm-2 control-label">Name</label>
+                      <label htmlFor="name" className="col-sm-2 control-label">Name</label>
                       <div className="col-md-8">
-                        <input type="text" className="form-control" id="name" placeholder="John Doe" />
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="name"
+                          placeholder="John Doe"
+                          onChange={this.inputModel.bind(this, 'dataUser.name')}
+                          value={this.state.dataUser.name || ''}
+                        />
                       </div>
                     </div>
                     <div className="form-group">
