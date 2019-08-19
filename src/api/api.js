@@ -8,7 +8,7 @@ export function api() {
     return processRequest(
       axios.get(mergeEndpoint(endpoint), {
         headers: {
-          Authorization: localStorage.getItem('user-token'),
+          Authorization: "Bearer " + localStorage.getItem('user-token'),
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
@@ -17,9 +17,9 @@ export function api() {
 
   function post (endpoint, payload) {
     return processRequest(
-      axios.post(mergeEndpoint(endpoint), payload, {
+      axios.post(mergeEndpoint(endpoint), qs.stringify(payload), {
         headers: {
-          Authorization: localStorage.getItem('user-token'),
+          Authorization: "Bearer " + localStorage.getItem('user-token'),
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
@@ -28,9 +28,9 @@ export function api() {
 
   function put (endpoint, payload) {
     return processRequest(
-      axios.put(mergeEndpoint(endpoint), payload, {
+      axios.put(mergeEndpoint(endpoint), qs.stringify(payload), {
         headers: {
-          Authorization: localStorage.getItem('user-token'),
+          Authorization: "Bearer " + localStorage.getItem('user-token'),
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })
@@ -39,9 +39,9 @@ export function api() {
 
   function del (endpoint, payload) {
     return processRequest(
-      axios.delete(mergeEndpoint(endpoint), payload, {
+      axios.delete(mergeEndpoint(endpoint), qs.stringify(payload), {
         headers: {
-          Authorization: localStorage.getItem('user-token'),
+          Authorization: "Bearer " + localStorage.getItem('user-token'),
           "Content-Type": "application/x-www-form-urlencoded"
         }
       })

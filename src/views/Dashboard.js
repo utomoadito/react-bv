@@ -1,12 +1,14 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
+import { api } from '../api/api'
 import '../css/Main.css'
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      dataUser: {}
+      dataUser: {},
+      model: {}
     }
   }
 
@@ -14,7 +16,11 @@ class Dashboard extends React.Component {
     let dataUser = localStorage.getItem('data-user')
     dataUser = JSON.parse(dataUser)
     this.setState({
-      dataUser: dataUser
+      dataUser: dataUser,
+      model: {
+        email: dataUser.email,
+        name: dataUser.name
+      }
     })
   }
 
@@ -33,6 +39,15 @@ class Dashboard extends React.Component {
         [model]: event.target.value
       })
     }
+  }
+  submit() {
+    let model = this.state.model
+    api().post('user/' + this.state.dataUser.id, model).then(response => {
+      console.log(response)
+      if (response.status === "Success") {
+        localStorage.setItem('data-user', JSON.stringify(model))
+      }
+    })
   }
 
   render() {
@@ -65,8 +80,8 @@ class Dashboard extends React.Component {
                          className="form-control"
                          id="email"
                          placeholder="admin@mail.com"
-                         onChange={this.inputModel.bind(this, 'dataUser.email')}
-                         value={this.state.dataUser.email || ''}
+                         onChange={this.inputModel.bind(this, 'model.email')}
+                         value={this.state.model.email || ''}
                         />
                       </div>
                     </div>
@@ -78,14 +93,14 @@ class Dashboard extends React.Component {
                           className="form-control"
                           id="name"
                           placeholder="John Doe"
-                          onChange={this.inputModel.bind(this, 'dataUser.name')}
-                          value={this.state.dataUser.name || ''}
+                          onChange={this.inputModel.bind(this, 'model.name')}
+                          value={this.state.model.name || ''}
                         />
                       </div>
                     </div>
                     <div className="form-group">
                       <div className="col-sm-offset-2 col-md-8">
-                        <button type="submit" className="btn btn-primary">Update</button>
+                        <button onClick={this.submit.bind(this)} type="button" className="btn btn-primary">Update</button>
                       </div>
                     </div>
                   </form>

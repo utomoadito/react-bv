@@ -151,7 +151,7 @@ server.post('/user/:id', (req, res) => {
       res.status(status).json({ status, message })
       return
     }
-
+    console.log(req.body)
     // Get current users data
     var data = JSON.parse(datas.toString())
 
