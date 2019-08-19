@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -7,6 +7,13 @@ class Sidebar extends React.Component {
     this.state = {
       // dataUser: {}
     }
+  }
+
+  // Method Event
+  logout () {
+    localStorage.removeItem('user-token')
+    localStorage.removeItem('data-user')
+    window.location.reload()
   }
 
   render() {
@@ -44,10 +51,12 @@ class Sidebar extends React.Component {
                   </Link>
                 </li>
                 <li role="presentation">
-                  <Link to={'/login'}>
+                  {/* <Link to={'/login'}> */}
+                  <a href="#!" onClick={this.logout.bind(this)}>
                     <i className="glyphicon glyphicon-user"></i>
                     <span style={{verticalAlign:'text-bottom'}}>LOGOUT</span>
-                  </Link>
+                  </a>
+                  {/* </Link> */}
                 </li>
               </ul>
             </div>
@@ -58,4 +67,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar
+export default withRouter(Sidebar)

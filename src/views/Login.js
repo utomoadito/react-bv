@@ -40,7 +40,7 @@ class Login extends React.Component {
       const token = response.access_token
       localStorage.setItem('user-token', token) // store the token in localstorage
       localStorage.setItem('data-user', JSON.stringify(response.data_user)) // store data user in localstorage
-      this.props.history.push('/')
+      this.props.history.go('/')
     })
   }
   

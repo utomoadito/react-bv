@@ -1,34 +1,35 @@
 import React from 'react'
 import { routes } from './router'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+import Login from './views/Login'
 import './App.css'
 
 function App() {
+  const token = localStorage.getItem('user-token')
   return (
     <div>
+      <Route
+        path="/login"
+        render={() => !token ? (
+          <Login /> 
+        ) : (
+          <Redirect to="/" />
+        )
+      }
+      />
       {routes.map((route, i) => {
-        if (route.path === '/') {
-          return (
-            <Route
-              key={i}
-              exact
-              path={route.path}
-              render={props => (
-                <route.component {...props} />
-              )}
-            />
-          )
-        } else {
-          return (
-            <Route
-              key={i}
-              path={route.path}
-              render={props => (
-                <route.component {...props} />
-              )}
-            />
-          )
-        }
+        return (
+          <Route
+            key={i}
+            exact={route.exact}
+            path={route.path}
+            render={props => token ? (
+              <route.component {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          />
+        )
       })}
     </div>
   )
